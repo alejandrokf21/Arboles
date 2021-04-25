@@ -32,5 +32,9 @@ namespace Arboles
         public void nuevoValor(Object d) { dato = d; }
         public void ramaIzdo(Nodo n) { izdo = n; }
         public void ramaDcho(Nodo n) { dcho = n; }
+        public string visitar()
+        {
+            return dato.ToString();
+        }
     }
 }
