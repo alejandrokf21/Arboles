@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Arboles
 {
-    class Estudiante:Comparador
+    class Estudiante : Comparador
 
     {
         public String apellidos { get; set; }
@@ -33,17 +33,23 @@ namespace Arboles
         bool Comparador.igualQue(object q)
         {
             Estudiante estudianteAux = (Estudiante)q;
+            Console.WriteLine("Comparing igual que: " + email + " - " + estudianteAux.email +
+                "Valor: " + email.CompareTo(estudianteAux.email));
             return email == estudianteAux.email;
         }
         bool Comparador.menorQue(object q)
         {
             Estudiante estudianteAux = (Estudiante)q;
-            return (email.CompareTo(estudianteAux.nombres) < 0);           
+            Console.WriteLine("Comparing menor que: " + email + " - " + estudianteAux.email + 
+                "Valor: "+email.CompareTo(estudianteAux.email));
+            return (email.CompareTo(estudianteAux.email) < 0);
         }
         bool Comparador.mayorQue(object q)
         {
             Estudiante estudianteAux = (Estudiante)q;
-            return (email.CompareTo(estudianteAux.nombres) > 0);
+            Console.WriteLine("Comparing mayor que: " + email + " - " + estudianteAux.email +
+                "Valor: " + email.CompareTo(estudianteAux.email));
+            return (email.CompareTo(estudianteAux.email) > 0);
         }
         bool Comparador.menorQueId(object q)
         {
@@ -56,9 +62,20 @@ namespace Arboles
             return (idEstudiante.CompareTo(estudianteAux.idEstudiante) > 0);
         }
 
+        public string datoOrden()
+        {
+            return idEstudiante + " " + nombres + " " + apellidos+ "; ";
+
+        }
+
         public override string ToString()
         {
-            return idEstudiante+ " " + nombres + " " +apellidos +"; ";
+            return idEstudiante + " " + nombres + " " + apellidos + "; ";
+        }
+
+        public string ToString(string i)
+        {
+            return idEstudiante + " " + nombres + " " + apellidos + "; ";
         }
 
     }

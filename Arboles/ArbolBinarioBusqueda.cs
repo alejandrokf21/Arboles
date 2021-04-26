@@ -17,7 +17,7 @@ namespace Arboles
         {
         }
 
-        public Nodo Buscar(Object buscado)
+        public Nodo buscar(Object buscado)
         {
             Comparador dato;
             dato = (Comparador)buscado;

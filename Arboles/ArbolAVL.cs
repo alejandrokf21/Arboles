@@ -9,17 +9,18 @@ namespace Arboles
     class ArbolAVL
     {
         protected NodoAvl raiz;
+        public int contadorNodosRecorridos { get; set; }
 
         public ArbolAVL()
         {
             raiz = null;
         }
 
-        private NodoAvl raizArbol()
+        public NodoAvl raizArbol()
         {
             return raiz;
         }
-
+       
         private NodoAvl rotacionII(NodoAvl n, NodoAvl n1)
         {
             n.ramaIzdo(n1.subarbolDcho());
@@ -217,8 +218,7 @@ namespace Arboles
                 case -1:
                     n.fe = 0;
                     break;
-                default:
-                    break;
+                
             }
             return n;
         }
@@ -246,8 +246,7 @@ namespace Arboles
                     else
                         n = rotacionID(n, n1);
                     break;
-                default:
-                    break;
+               
             }
             return n;
         }
@@ -299,6 +298,37 @@ namespace Arboles
                 return 0;
             else
                 return 1 + numNodos(raiz.subarbolIzdo()) + numNodos(raiz.subarbolDcho());
+        }
+
+        public Nodo buscar(Object buscado)
+        {
+            Comparador dato;
+            dato = (Comparador)buscado;
+            if (raiz == null)
+                return null;
+            else
+                return buscar(raizArbol(), dato);
+        }
+
+        protected Nodo buscar(Nodo raizSub, Comparador buscado)
+        {            
+            if (raizSub == null)            
+                return null;            
+            else if (buscado.igualQue(raizSub.valorNodo())) 
+            {
+                contadorNodosRecorridos++;
+                return raizSub;
+            }
+            else if (buscado.menorQue(raizSub.valorNodo()))
+            {
+                contadorNodosRecorridos++;
+                return buscar(raizSub.subarbolIzdo(), buscado);
+            }
+            else
+            {
+                contadorNodosRecorridos++;
+                return buscar(raizSub.subarbolDcho(), buscado);
+            }
         }
     }
 }
